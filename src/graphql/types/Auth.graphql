@@ -1,0 +1,9 @@
+type Token {
+    token: String
+}
+
+type Mutation {
+    registerUser(email: String!, password: String!): Token
+    authUser(email: String!, password: String!): Token
+    deleteMyUserAccount: DeleteResult
+}
