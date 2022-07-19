@@ -1,19 +1,19 @@
-import { QueryResolvers, MutationResolvers } from '../../typeDefs/resolvers';
+import { QueryResolvers, MutationResolvers } from "../../typeDefs/resolvers";
 
 interface Resolvers {
-    Query: QueryResolvers
+  Query: QueryResolvers;
 }
 
 const resolvers: Resolvers = {
-    Query: {
-        listAllUsers: async (parent, args, context) => {
-            context.di.authValidation.ensureThatUserIsLogged(context);
+  Query: {
+    listAllUsers: async (parent, args, context) => {
+      context.auth.ensureThatUserIsLogged(context);
 
-            context.di.authValidation.ensureThatUserIsAdministrator(context);
+      context.auth.ensureThatUserIsAdministrator(context);
 
-            return context.di.model.Users.find({});
-        },
-    }
-}
+      return context.db.Users.find({});
+    },
+  },
+};
 
-export default resolvers
+export default resolvers;

@@ -21,7 +21,8 @@
     "watch-codegen": "graphql-codegen --config codegen.yml --watch",
     "test": "node --experimental-vm-modules node_modules/.bin/jest",
     "test:watch": "node --experimental-vm-modules node_modules/.bin/jest --watchAll",
-    "lint": "eslint --ext .js .",
+    "format": "prettier --write '{,!(node_modules)/**/}!(*.min).{html,css,js,jsx,ts,tsx,json}'",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx src --color",
     "clean": "rimraf logs dist",
     "prepare": "husky install"
   },
@@ -53,6 +54,11 @@
     "copyfiles": "^2.3.0",
     "eslint": "8.15.0",
     "eslint-plugin-no-lenght": "1.0.2-0",
+    "eslint-config-airbnb-base": "14.1.0",
+    "eslint-config-prettier": "6.10.1",
+    "eslint-plugin-import": "2.20.2",
+    "eslint-plugin-jest": "23.8.2",
+    "eslint-plugin-prettier": "3.1.2",
     "husky": "7.0.4",
     "jest": "27.5.1",
     "jsonfile": "6.1.0",
@@ -60,7 +66,8 @@
     "pretty-quick": "2.0.1",
     "rimraf": "3.0.2",
     "ts-node-dev": "^1.1.6",
-    "typescript": "^3.9.6"
+    "typescript": "^3.9.6",
+    "prettier": "^2.0.5"
   },
   "dependencies": {
     "apollo-server-express": "3.7.0",
