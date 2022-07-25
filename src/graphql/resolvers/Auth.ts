@@ -6,11 +6,16 @@ import { QueryResolvers, MutationResolvers } from "../../typeDefs/resolvers";
 
 interface Resolvers {
   Mutation: MutationResolvers;
+  Query: QueryResolvers;
 }
 
 const resolvers: Resolvers = {
   Mutation: {
-    registerUser: async (parent, { email, password }, context) => {
+    registerUser: async (
+      parent,
+      { name, email, password, isAdmin },
+      context
+    ) => {
       if (!email || !password) {
         throw new UserInputError("Data provided is not valid");
       }
@@ -36,7 +41,7 @@ const resolvers: Resolvers = {
         throw new UserInputError("Data provided is not valid");
       }
 
-      await new context.db.Users({ email, password }).save();
+      await new context.db.Users({ name, email, password, isAdmin }).save();
 
       const user = await context.db.Users.findOne({ email });
 
@@ -87,6 +92,15 @@ const resolvers: Resolvers = {
       const user = await context.auth.getUser(context);
 
       return context.db.Users.deleteOne({ uuid: user.uuid });
+    },
+  },
+  Query: {
+    currentUser: async (parent, args, context) => {
+      context.auth.ensureThatUserIsLogged(context);
+
+      const user = await context.auth.getUser(context);
+
+      return user;
     },
   },
 };

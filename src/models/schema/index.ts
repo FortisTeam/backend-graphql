@@ -1,3 +1,4 @@
-import { UsersSchema } from './UsersSchema';
+import { UsersSchema } from "./UsersSchema";
+import { ProjectsSchema } from "./ProjectsSchema";
 
-export { UsersSchema };
+export { UsersSchema, ProjectsSchema };

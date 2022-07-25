@@ -1,7 +1,8 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
-import { UsersSchema } from './schema';
+import { UsersSchema, ProjectsSchema } from "./schema";
 
 export default {
-	Users: mongoose.model('users', UsersSchema),
+  Users: mongoose.model("users", UsersSchema),
+  Projects: mongoose.model("projects", ProjectsSchema),
 };

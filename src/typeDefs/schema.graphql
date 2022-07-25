@@ -3,9 +3,19 @@ type Token {
 }
 
 type Mutation {
-  registerUser(email: String!, password: String!): Token
+  registerUser(
+    name: String!
+    email: String!
+    password: String!
+    isAdmin: Boolean!
+  ): Token
   authUser(email: String!, password: String!): Token
   deleteMyUserAccount: DeleteResult
+}
+
+type Query {
+  currentUser: User
+  listAllUsers: [User]
 }
 
 type DeleteResult {
@@ -13,16 +23,13 @@ type DeleteResult {
 }
 
 type User {
+  name: String
   email: String
   isAdmin: Boolean
   isActive: Boolean
   uuid: String
   registrationDate: String
   lastLogin: String
-}
-
-type Query {
-  listAllUsers: [User]
 }
 
 schema {

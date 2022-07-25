@@ -1,9 +1,18 @@
 type Token {
-    token: String
+  token: String
 }
 
 type Mutation {
-    registerUser(email: String!, password: String!): Token
-    authUser(email: String!, password: String!): Token
-    deleteMyUserAccount: DeleteResult
+  registerUser(
+    name: String!
+    email: String!
+    password: String!
+    isAdmin: Boolean!
+  ): Token
+  authUser(email: String!, password: String!): Token
+  deleteMyUserAccount: DeleteResult
+}
+
+type Query {
+  currentUser: User
 }

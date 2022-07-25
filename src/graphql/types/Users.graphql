@@ -1,12 +1,13 @@
 type User {
-    email: String
-    isAdmin: Boolean
-    isActive: Boolean
-    uuid: String
-    registrationDate: String
-    lastLogin: String
+  name: String
+  email: String
+  isAdmin: Boolean
+  isActive: Boolean
+  uuid: String
+  registrationDate: String
+  lastLogin: String
 }
 
 type Query {
-    listAllUsers: [User]
+  listAllUsers: [User]
 }
