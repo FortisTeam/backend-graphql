@@ -4,8 +4,8 @@ const Schema = mongoose.Schema;
 
 /**
  * Projects schema
- * @constructor Users model constructor
- * @classdesc User have interesting properties.
+ * @constructor Projects model constructor
+ * @classdesc Projects have interesting properties.
  */
 const ProjectsSchema = new Schema({
   name: {
@@ -23,17 +23,49 @@ const ProjectsSchema = new Schema({
     type: Date,
     required: true,
   },
-  current_completed_percentage: {
+  forecast_time_completion: {
+    type: Date,
+    required: true,
+  },
+  forecast_overrun: {
     type: Number,
     required: true,
   },
-  forecast_time_completion: {
-    type: Date,
+  current_completed: {
+    type: Number,
+    required: true,
+  },
+  planned_completed: {
+    type: Number,
+    required: true,
+  },
+  variance: {
+    type: Number,
     required: true,
   },
   eot_revised_date: {
     type: Date,
     required: true,
+  },
+  eot_end_date: {
+    type: Date,
+    required: true,
+  },
+  delay_exposure_revised_date: {
+    type: Date,
+    required: true,
+  },
+  delay_exposure_unapproved_date: {
+    type: Date,
+    required: true,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+  updatedAt: {
+    type: Date,
+    default: Date.now,
   },
 });
 

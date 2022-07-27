@@ -1,4 +1,8 @@
-import { GraphQLResolveInfo } from "graphql";
+import {
+  GraphQLResolveInfo,
+  GraphQLScalarType,
+  GraphQLScalarTypeConfig,
+} from "graphql";
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: any }> = { [K in keyof T]: T[K] };
 export type RequireFields<T, K extends keyof T> = {
@@ -11,6 +15,8 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  Date: any;
+  JSON: any;
 };
 
 export type DeleteResult = {
@@ -54,8 +60,7 @@ export type User = {
   email?: Maybe<Scalars["String"]>;
   isAdmin?: Maybe<Scalars["Boolean"]>;
   isActive?: Maybe<Scalars["Boolean"]>;
-  uuid?: Maybe<Scalars["String"]>;
-  registrationDate?: Maybe<Scalars["String"]>;
+  _id: Scalars["ID"];
   lastLogin?: Maybe<Scalars["String"]>;
 };
 
@@ -174,27 +179,38 @@ export type DirectiveResolverFn<
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
+  Date: ResolverTypeWrapper<Scalars["Date"]>;
   DeleteResult: ResolverTypeWrapper<DeleteResult>;
   Int: ResolverTypeWrapper<Scalars["Int"]>;
+  JSON: ResolverTypeWrapper<Scalars["JSON"]>;
   Mutation: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars["String"]>;
   Boolean: ResolverTypeWrapper<Scalars["Boolean"]>;
   Query: ResolverTypeWrapper<{}>;
   Token: ResolverTypeWrapper<Token>;
   User: ResolverTypeWrapper<User>;
+  ID: ResolverTypeWrapper<Scalars["ID"]>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
+  Date: Scalars["Date"];
   DeleteResult: DeleteResult;
   Int: Scalars["Int"];
+  JSON: Scalars["JSON"];
   Mutation: {};
   String: Scalars["String"];
   Boolean: Scalars["Boolean"];
   Query: {};
   Token: Token;
   User: User;
+  ID: Scalars["ID"];
 };
+
+export interface DateScalarConfig
+  extends GraphQLScalarTypeConfig<ResolversTypes["Date"], any> {
+  name: "Date";
+}
 
 export type DeleteResultResolvers<
   ContextType = any,
@@ -203,6 +219,11 @@ export type DeleteResultResolvers<
   deletedCount?: Resolver<ResolversTypes["Int"], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType>;
 };
+
+export interface JsonScalarConfig
+  extends GraphQLScalarTypeConfig<ResolversTypes["JSON"], any> {
+  name: "JSON";
+}
 
 export type MutationResolvers<
   ContextType = any,
@@ -266,12 +287,7 @@ export type UserResolvers<
     ParentType,
     ContextType
   >;
-  uuid?: Resolver<Maybe<ResolversTypes["String"]>, ParentType, ContextType>;
-  registrationDate?: Resolver<
-    Maybe<ResolversTypes["String"]>,
-    ParentType,
-    ContextType
-  >;
+  _id?: Resolver<ResolversTypes["ID"], ParentType, ContextType>;
   lastLogin?: Resolver<
     Maybe<ResolversTypes["String"]>,
     ParentType,
@@ -281,7 +297,9 @@ export type UserResolvers<
 };
 
 export type Resolvers<ContextType = any> = {
+  Date?: GraphQLScalarType;
   DeleteResult?: DeleteResultResolvers<ContextType>;
+  JSON?: GraphQLScalarType;
   Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
   Token?: TokenResolvers<ContextType>;

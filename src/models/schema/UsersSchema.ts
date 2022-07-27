@@ -35,20 +35,17 @@ const UsersSchema = new Schema({
     required: true,
     default: true,
   },
-  uuid: {
-    type: String,
-    required: true,
-    unique: true,
-    default: randomUUID,
-  },
-  registrationDate: {
+  lastLogin: {
     type: Date,
     required: true,
     default: Date.now,
   },
-  lastLogin: {
+  createdAt: {
     type: Date,
-    required: true,
+    default: Date.now,
+  },
+  updatedAt: {
+    type: Date,
     default: Date.now,
   },
 });

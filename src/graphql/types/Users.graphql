@@ -3,8 +3,7 @@ type User {
   email: String
   isAdmin: Boolean
   isActive: Boolean
-  uuid: String
-  registrationDate: String
+  _id: ID!
   lastLogin: String
 }
 

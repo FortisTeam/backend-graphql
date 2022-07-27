@@ -50,7 +50,7 @@ const resolvers: Resolvers = {
           user.email,
           user.isAdmin,
           user.isActive,
-          user.uuid
+          user._id
         ),
       };
     },
@@ -82,7 +82,7 @@ const resolvers: Resolvers = {
           user.email,
           user.isAdmin,
           user.isActive,
-          user.uuid
+          user._id
         ),
       };
     },
@@ -91,7 +91,7 @@ const resolvers: Resolvers = {
 
       const user = await context.auth.getUser(context);
 
-      return context.db.Users.deleteOne({ uuid: user.uuid });
+      return context.db.Users.deleteOne({ _id: user._id });
     },
   },
   Query: {

@@ -18,6 +18,10 @@ type Query {
   listAllUsers: [User]
 }
 
+scalar Date
+
+scalar JSON
+
 type DeleteResult {
   deletedCount: Int!
 }
@@ -27,8 +31,7 @@ type User {
   email: String
   isAdmin: Boolean
   isActive: Boolean
-  uuid: String
-  registrationDate: String
+  _id: ID!
   lastLogin: String
 }
 
