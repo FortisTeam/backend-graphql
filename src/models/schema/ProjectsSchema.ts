@@ -59,6 +59,12 @@ const ProjectsSchema = new Schema({
     type: Date,
     required: true,
   },
+  project_access: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "users",
+    },
+  ],
   createdAt: {
     type: Date,
     default: Date.now,
